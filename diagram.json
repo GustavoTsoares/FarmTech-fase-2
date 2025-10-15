@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "FarmTech - Demo automatico",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -10, "left": -10, "attrs": {} },
+
+    { "type": "wokwi-button", "id": "btnN", "top": 30,  "left": 600, "attrs": { "label": "N", "color": "green", "toggle": "1" } },
+    { "type": "wokwi-button", "id": "btnP", "top": 90,  "left": 600, "attrs": { "label": "P", "color": "green", "toggle": "1" } },
+    { "type": "wokwi-button", "id": "btnK", "top": 150, "left": 600, "attrs": { "label": "K", "color": "green", "toggle": "1" } },
+
+    { "type": "wokwi-photoresistor", "id": "ldr",  "top": 10,  "left": 260, "attrs": { "label": "pH (LDR)" } },
+    { "type": "wokwi-resistor",      "id": "r10k", "top": 50,  "left": 320, "attrs": { "value": "10k" } },
+
+    { "type": "wokwi-dht22", "id": "dht", "top": -120, "left": -220, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay", "top": 140, "left": -220, "attrs": {} },
+
+    { "type": "wokwi-potentiometer", "id": "potRain", "top": 220, "left": 200, "attrs": { "value": "0", "label": "Chuva (mm)" } }
+  ],
+  "connections": [
+    ["btnN:1", "esp:GND.1", "black", []],
+    ["btnN:2", "esp:IO12",  "green", []],
+    ["btnP:1", "esp:GND.1", "black", []],
+    ["btnP:2", "esp:IO13",  "green", []],
+    ["btnK:1", "esp:GND.1", "black", []],
+    ["btnK:2", "esp:IO14",  "green", []],
+
+    ["ldr:VCC", "esp:3V3",  "red",    []],
+    ["ldr:OUT", "r10k:1",   "orange", []],
+    ["r10k:2",  "esp:GND.2","black",  []],
+    ["ldr:OUT", "esp:IO34", "purple", []],
+
+    ["dht:VCC", "esp:3V3",  "red",    []],
+    ["dht:GND", "esp:GND.2","black",  []],
+    ["dht:SDA", "esp:IO15", "yellow", []],
+
+    ["relay:IN",  "esp:IO5", "blue",  []],
+    ["relay:VCC", "esp:5V",  "red",   []],
+    ["relay:GND", "esp:GND.2","black",[]],
+
+    ["potRain:VCC", "esp:3V3",  "red",   []],
+    ["potRain:GND", "esp:GND.2","black", []],
+    ["potRain:SIG", "esp:IO35", "brown", []]
+  ]
+}
